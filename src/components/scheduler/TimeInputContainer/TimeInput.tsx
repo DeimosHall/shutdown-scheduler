@@ -9,7 +9,9 @@ function TimeInput({value, onChange}: TimeInputProps) {
   return (
     <Box
       sx={{
-        border: '1px solid #2a3340',
+        border: (theme) => `1px solid ${theme.palette.border.main}`,
+        borderRadius: '10px',
+        backgroundColor: (theme) => theme.palette.customBackground.main,
         width: '100px',
         height: '80px',
         display: 'flex',

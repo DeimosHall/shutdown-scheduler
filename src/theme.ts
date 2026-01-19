@@ -5,13 +5,35 @@ declare module "@mui/material/styles" {
     customBackground: {
       main: string;
       light: string;
-    };
+    },
+    border: {
+      main: string;
+    },
+    mainButton: {
+      main: string;
+      hover: string;
+    },
+    secondaryButton: {
+      main: string;
+      hover: string;
+    }
   }
   interface PaletteOptions {
     customBackground?: {
       main: string;
       light: string;
-    };
+    },
+    border?: {
+      main: string;
+    },
+    mainButton?: {
+      main: string;
+      hover: string;
+    },
+    secondaryButton?: {
+      main: string;
+      hover: string;
+    }
   }
 }
 
@@ -48,7 +70,18 @@ export const darkTheme = createTheme({
     },
     customBackground: {
       main: "#11161d",
-      light: "#192b3d",
+      light: "#192b3d", // Not used
     },
+    mainButton: {
+      main: "#137fec",
+      hover: "#1476d9",
+    },
+    secondaryButton: {
+      main: "#11161d",
+      hover: "#192b3d",
+    },
+    border: {
+      main: "#2a3340",
+    }
   },
 });
