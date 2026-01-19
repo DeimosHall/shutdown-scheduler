@@ -9,25 +9,51 @@ export const TimeInputContainer = () => {
   const is_input_valid = (input: string): Boolean => {
     const value = input.trim();
     
-    if (!isNaN(Number(value))) {
+    if (isNaN(Number(value))) {
+      return false;
+    }
+    
+    if (value.length > 2) {
       return false;
     }
     
     return true;
   }
   
+  const is_hours_valid = (hour: string): Boolean => {
+    return Number(hour) >= 0 && Number(hour) <= 23;
+  }
+  
+  const is_minutes_valid = (minutes: string): Boolean => {
+    return Number(minutes) >= 0 && Number(minutes) <= 59;
+  }
+  
   const updateHours = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const hours = e.target.value;
     
-    if (!is_input_valid(value)) {
+    if (!is_input_valid(hours)) {
       return;
     }
     
-    setHours(value);
+    if (!is_hours_valid(hours)) {
+      return;
+    }
+    
+    setHours(hours);
   };
 
   const updateMinutes = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinutes(e.target.value);
+    const minutes = e.target.value;
+    
+    if (!is_input_valid(minutes)) {
+      return;
+    }
+    
+    if (!is_minutes_valid(minutes)) {
+      return;
+    }
+    
+    setMinutes(minutes);
   };
 
   return (
