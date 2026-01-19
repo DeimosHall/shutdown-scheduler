@@ -2,7 +2,13 @@ import { Box, Button, ButtonProps, Container } from "@mui/material";
 import TimerIcon from "@mui/icons-material/Timer";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
+import { Mode } from "../../types/types";
+import { Dispatch, SetStateAction } from "react";
+
+interface ModeSwitcherProps {
+  mode: Mode,
+  onModeChange: (newMode: Mode) => void;
+}
 
 const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.primary.contrastText,
@@ -13,11 +19,7 @@ const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
   borderRadius: "10px",
 }));
 
-type Mode = "COUNTDOWN" | "CLOCK";
-
-export const ModeSwitcher = () => {
-  const [mode, setMode] = useState<Mode>("COUNTDOWN");
-
+export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
   return (
     <Container maxWidth="lg">
       <Box
@@ -42,7 +44,7 @@ export const ModeSwitcher = () => {
                   : theme.palette.primary.light,
             },
           }}
-          onClick={() => setMode("COUNTDOWN")}
+          onClick={() => onModeChange("COUNTDOWN")}
         >
           Countdown Mode
         </CustomButton>
@@ -59,7 +61,7 @@ export const ModeSwitcher = () => {
                   : theme.palette.primary.light,
             },
           }}
-          onClick={() => setMode("CLOCK")}
+          onClick={() => onModeChange("CLOCK")}
         >
           Clock Mode
         </CustomButton>
