@@ -5,7 +5,7 @@ interface TimeInputProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
-function TimeInput({ value, onChange }: TimeInputProps) {
+export function TimeInput({ value, onChange }: TimeInputProps) {
   return (
     <Box
       sx={{
@@ -29,5 +29,3 @@ function TimeInput({ value, onChange }: TimeInputProps) {
     </Box>
   );
 }
-
-export default TimeInput;

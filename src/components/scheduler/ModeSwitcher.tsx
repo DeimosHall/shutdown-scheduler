@@ -3,7 +3,6 @@ import TimerIcon from "@mui/icons-material/Timer";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { styled } from "@mui/material/styles";
 import { Mode } from "../../types/types";
-import { Dispatch, SetStateAction } from "react";
 
 interface ModeSwitcherProps {
   mode: Mode,
