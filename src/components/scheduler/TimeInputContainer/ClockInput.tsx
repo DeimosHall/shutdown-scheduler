@@ -2,42 +2,26 @@ import { Box } from "@mui/material";
 import { TimeInput } from "./TimeInput";
 import { Time } from "../../../types/types";
 import { ChangeEvent } from "react";
+import {
+  CLOCK_MODE_MAX_HOURS,
+  CLOCK_MODE_MAX_MINUTES,
+  CLOCK_MODE_MIN_HOURS,
+  CLOCK_MODE_MIN_MINUTES,
+  is_number_in_range,
+} from "../../../utils/validators";
 
 interface ClockInputProps {
   time: Time;
   onTimeChange: (newTime: Time) => void;
 }
 
-const is_input_valid = (input: string): Boolean => {
-  const value = input.trim();
-
-  if (isNaN(Number(value))) {
-    return false;
-  }
-
-  if (value.length > 2) {
-    return false;
-  }
-
-  return true;
-};
-
-const is_hours_valid = (hour: string): Boolean => {
-  return Number(hour) >= 0 && Number(hour) <= 23;
-};
-
-const is_minutes_valid = (minutes: string): Boolean => {
-  return Number(minutes) >= 0 && Number(minutes) <= 59;
-};
-
-export const ClockInput = ({
-  time,
-  onTimeChange,
-}: ClockInputProps) => {
+export const ClockInput = ({ time, onTimeChange }: ClockInputProps) => {
   const onHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
     const hours = e.target.value;
 
-    if (!is_input_valid(hours) || !is_hours_valid(hours)) {
+    if (
+      !is_number_in_range(hours, CLOCK_MODE_MIN_HOURS, CLOCK_MODE_MAX_HOURS)
+    ) {
       return;
     }
 
@@ -47,7 +31,13 @@ export const ClockInput = ({
   const onMinutesChange = (e: ChangeEvent<HTMLInputElement>) => {
     const minutes = e.target.value;
 
-    if (!is_input_valid(minutes) || !is_minutes_valid(minutes)) {
+    if (
+      !is_number_in_range(
+        minutes,
+        CLOCK_MODE_MIN_MINUTES,
+        CLOCK_MODE_MAX_MINUTES,
+      )
+    ) {
       return;
     }
 
