@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
-import { TimeInputContainer } from "../scheduler/TimeInputContainer/TimeInputContainer";
+import { ClockInput } from "../scheduler/TimeInputContainer/ClockInput";
 import { useState } from "react";
 import { Mode, Time } from "../../types/types";
 import { ModeSwitcher } from "../scheduler/ModeSwitcher";
+import { TimeInputContainer } from "../scheduler/TimeInputContainer/TimeInputContainer";
 
 export const MainContainer = () => {
   const [mode, setMode] = useState<Mode>("COUNTDOWN");
@@ -18,6 +19,7 @@ export const MainContainer = () => {
       <TimeInputContainer
         time={time}
         onTimeChange={updateTime}
+        mode={mode}
       />
     </Box>
   );
