@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Mode, Time } from "../../../types/types";
 import { ClockInput } from "./ClockInput";
 import { CountdownInput } from "./CountdownInput";
@@ -15,7 +15,6 @@ interface TimeValue {
 }
 
 export function TimeInputContainer({
-  time,
   onTimeChange,
   mode,
 }: TimeInputContainerProps) {
@@ -29,6 +28,19 @@ export function TimeInputContainer({
       minutes: 30,
     },
   });
+  
+  useEffect(() => {
+    switch (mode) {
+      case "COUNTDOWN": {
+        onTimeChange(timeValue.countdownTime);
+        break;
+      }
+      case "CLOCK": {
+        onTimeChange(timeValue.clockTime);
+        break;
+      }
+    }
+  }, [mode]);
 
   const updateTimeValue = (newTime: Time) => {
     switch (mode) {
