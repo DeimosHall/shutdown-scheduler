@@ -1,23 +1,13 @@
-import { Box, Button, ButtonProps, Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import TimerIcon from "@mui/icons-material/Timer";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { styled } from "@mui/material/styles";
 import { Mode } from "../../types/types";
+import { CustomButton } from "../common/CustomButton";
 
 interface ModeSwitcherProps {
-  mode: Mode,
+  mode: Mode;
   onModeChange: (newMode: Mode) => void;
 }
-
-const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
-  backgroundColor: theme.palette.primary.main,
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
-  borderRadius: "10px",
-  textTransform: "none",
-}));
 
 export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
   return (
@@ -34,16 +24,7 @@ export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
         <CustomButton
           startIcon={<TimerIcon />}
           fullWidth
-          sx={{
-            backgroundColor: (theme) =>
-              mode == "COUNTDOWN" ? theme.palette.primary.main : "transparent",
-            "&:hover": {
-              backgroundColor: (theme) =>
-                mode == "COUNTDOWN"
-                  ? theme.palette.primary.dark
-                  : theme.palette.primary.light,
-            },
-          }}
+          isSelected={mode === "COUNTDOWN"}
           onClick={() => onModeChange("COUNTDOWN")}
         >
           Countdown Mode
@@ -51,16 +32,7 @@ export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
         <CustomButton
           startIcon={<AccessTimeIcon />}
           fullWidth
-          sx={{
-            backgroundColor: (theme) =>
-              mode == "CLOCK" ? theme.palette.primary.main : "transparent",
-            "&:hover": {
-              backgroundColor: (theme) =>
-                mode == "CLOCK"
-                  ? theme.palette.primary.dark
-                  : theme.palette.primary.light,
-            },
-          }}
+          isSelected={mode === "CLOCK"}
           onClick={() => onModeChange("CLOCK")}
         >
           Clock Mode
@@ -68,4 +40,4 @@ export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
       </Box>
     </Container>
   );
-};
+}

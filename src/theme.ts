@@ -4,7 +4,6 @@ declare module "@mui/material/styles" {
   interface Palette {
     customBackground: {
       main: string;
-      light: string;
     },
     border: {
       main: string;
@@ -27,7 +26,6 @@ declare module "@mui/material/styles" {
   interface PaletteOptions {
     customBackground?: {
       main: string;
-      light: string;
     },
     border?: {
       main: string;
@@ -62,7 +60,6 @@ export const lightTheme = createTheme({
     },
     customBackground: {
       main: "#e0e0e0",
-      light: "#f5f5f5",
     },
   },
 });
@@ -82,7 +79,6 @@ export const darkTheme = createTheme({
     },
     customBackground: {
       main: "#11161d",
-      light: "#192b3d", // Not used
     },
     mainButton: {
       main: "#137fec",
