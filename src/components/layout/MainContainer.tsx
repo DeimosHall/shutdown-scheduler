@@ -16,11 +16,20 @@ export const MainContainer = () => {
     setTime(newTime);
   };
 
+  const updateAction = (newAction: Action) => {
+    setStarted(false);
+    setAction(newAction);
+  };
+
   return (
     <Box>
       <ModeSwitcher mode={mode} onModeChange={setMode} />
-      <TimeInputContainer time={time} onTimeChange={updateTime} mode={mode} />
-      <ActionSelector action={action} onActionChange={setAction} />
+      <TimeInputContainer
+        onTimeChange={updateTime}
+        mode={mode}
+        disabled={started}
+      />
+      <ActionSelector action={action} onActionChange={updateAction} />
       <ActionButtons started={started} onStartedChange={setStarted} />
     </Box>
   );

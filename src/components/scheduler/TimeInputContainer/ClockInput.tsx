@@ -13,9 +13,14 @@ import {
 interface ClockInputProps {
   time: Time;
   onTimeChange: (newTime: Time) => void;
+  disabled: Boolean;
 }
 
-export const ClockInput = ({ time, onTimeChange }: ClockInputProps) => {
+export const ClockInput = ({
+  time,
+  onTimeChange,
+  disabled,
+}: ClockInputProps) => {
   const onHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
     const hours = e.target.value;
 
@@ -55,8 +60,16 @@ export const ClockInput = ({ time, onTimeChange }: ClockInputProps) => {
         gap: "30px",
       }}
     >
-      <TimeInput value={time.hours} onChange={onHoursChange} />
-      <TimeInput value={time.minutes} onChange={onMinutesChange} />
+      <TimeInput
+        value={time.hours}
+        onChange={onHoursChange}
+        disabled={disabled}
+      />
+      <TimeInput
+        value={time.minutes}
+        onChange={onMinutesChange}
+        disabled={disabled}
+      />
     </Box>
   );
 };

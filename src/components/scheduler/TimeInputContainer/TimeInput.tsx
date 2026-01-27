@@ -3,9 +3,10 @@ import { Box, InputBase } from "@mui/material";
 interface TimeInputProps {
   value: unknown;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  disabled: Boolean;
 }
 
-export function TimeInput({ value, onChange }: TimeInputProps) {
+export function TimeInput({ value, onChange, disabled }: TimeInputProps) {
   return (
     <Box
       sx={{
@@ -20,6 +21,7 @@ export function TimeInput({ value, onChange }: TimeInputProps) {
       }}
     >
       <InputBase
+        disabled={disabled === true}
         value={value}
         onChange={onChange}
         inputProps={{

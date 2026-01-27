@@ -13,9 +13,14 @@ import {
 interface CountdownInputProps {
   time: Time;
   onTimeChange: (newTime: Time) => void;
+  disabled: Boolean;
 }
 
-export function CountdownInput({ time, onTimeChange }: CountdownInputProps) {
+export function CountdownInput({
+  time,
+  onTimeChange,
+  disabled,
+}: CountdownInputProps) {
   const onHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
     const hours = e.target.value;
 
@@ -59,8 +64,16 @@ export function CountdownInput({ time, onTimeChange }: CountdownInputProps) {
         gap: "30px",
       }}
     >
-      <TimeInput value={time.hours} onChange={onHoursChange} />
-      <TimeInput value={time.minutes} onChange={onMinutesChange} />
+      <TimeInput
+        value={time.hours}
+        onChange={onHoursChange}
+        disabled={disabled}
+      />
+      <TimeInput
+        value={time.minutes}
+        onChange={onMinutesChange}
+        disabled={disabled}
+      />
     </Box>
   );
 }
