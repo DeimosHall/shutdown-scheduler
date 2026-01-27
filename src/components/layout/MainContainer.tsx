@@ -4,11 +4,13 @@ import { Action, Mode, Time } from "../../types/types";
 import { ModeSwitcher } from "../scheduler/ModeSwitcher";
 import { TimeInputContainer } from "../scheduler/TimeInputContainer/TimeInputContainer";
 import { ActionSelector } from "../scheduler/ActionSelector";
+import { ActionButtons } from "../scheduler/ActionButtons";
 
 export const MainContainer = () => {
   const [mode, setMode] = useState<Mode>("COUNTDOWN");
   const [time, setTime] = useState<Time>({ hours: 0, minutes: 30 });
   const [action, setAction] = useState<Action>("SHUTDOWN");
+  const [started, setStarted] = useState<Boolean>(false);
 
   const updateTime = (newTime: Time) => {
     setTime(newTime);
@@ -19,6 +21,7 @@ export const MainContainer = () => {
       <ModeSwitcher mode={mode} onModeChange={setMode} />
       <TimeInputContainer time={time} onTimeChange={updateTime} mode={mode} />
       <ActionSelector action={action} onActionChange={setAction} />
+      <ActionButtons started={started} onStartedChange={setStarted} />
     </Box>
   );
 };

@@ -18,6 +18,10 @@ export const CustomButton = styled(Button, {
       ? theme.palette.mainButton.hover
       : theme.palette.secondaryButton.hover,
   },
+  "&.Mui-disabled": {
+    backgroundColor: theme.palette.action.disabledBackground,
+    color: theme.palette.action.disabled,
+  },
   borderRadius: "10px",
   textTransform: "none",
 }));
