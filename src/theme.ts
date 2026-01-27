@@ -16,6 +16,12 @@ declare module "@mui/material/styles" {
     secondaryButton: {
       main: string;
       hover: string;
+    },
+    actionButton: {
+      selected: string,
+      unselected: string,
+      hover: string,
+      border: string,
     }
   }
   interface PaletteOptions {
@@ -33,6 +39,12 @@ declare module "@mui/material/styles" {
     secondaryButton?: {
       main: string;
       hover: string;
+    },
+    actionButton?: {
+      selected: string,
+      unselected: string,
+      hover: string,
+      border: string,
     }
   }
 }
@@ -82,6 +94,12 @@ export const darkTheme = createTheme({
     },
     border: {
       main: "#2a3340",
+    },
+    actionButton: {
+      selected: "#1a3553",
+      unselected: "#11161d",
+      hover: "#1a3553",
+      border: "#156bc3",
     }
   },
 });

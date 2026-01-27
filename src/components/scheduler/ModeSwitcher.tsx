@@ -16,6 +16,7 @@ const CustomButton = styled(Button)<ButtonProps>(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
   },
   borderRadius: "10px",
+  textTransform: "none",
 }));
 
 export function ModeSwitcher({ mode, onModeChange }: ModeSwitcherProps) {
