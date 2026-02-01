@@ -8,48 +8,35 @@ struct Time {
     minutes: u32,
 }
 
+impl Time {
+    fn to_minutes(&self) -> u32 {
+        self.hours * 60 + self.minutes
+    }
+}
+
+fn execute_command(command: &str, args: Vec<&str>) -> bool {
+    Command::new(command)
+        .args(args)
+        .status()
+        .map(|status| status.success())
+        .unwrap_or(false)
+}
+
 #[tauri::command]
 fn cancel() -> bool {
     println!("Canceling shutdown command");
-
-    let status = Command::new("shutdown")
-        .arg("-c")
-        .status();
-
-    if let Ok(status) = status {
-        status.success()
-    } else {
-        false
-    }
+    execute_command("shutdown", vec!["-c"])
 }
 
 #[tauri::command]
 fn shutdown(time: Time) -> bool {
     println!("Shutting down in {} hours and {} minutes or {} minutes", time.hours, time.minutes, time.hours * 60 + time.minutes);
-
-    let status = Command::new("shutdown")
-        .arg(format!("+{}", time.hours * 60 + time.minutes))
-        .status();
-
-    if let Ok(status) = status {
-        status.success()
-    } else {
-        false
-    }
+    execute_command("shutdown", vec![format!("+{}", time.to_minutes()).as_str()])
 }
 
 #[tauri::command]
 fn reboot(time: Time) -> bool {
-    let status = Command::new("shutdown")
-        .arg(format!("+{}", time.hours * 60 + time.minutes))
-        .arg("-r")
-        .status();
-
-    if let Ok(status) = status {
-        status.success()
-    } else {
-        false
-    }
+    execute_command("shutdown", vec![format!("+{}", time.to_minutes()).as_str(), "-r"])
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
