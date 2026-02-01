@@ -12,6 +12,14 @@ impl Time {
     fn to_minutes(&self) -> u32 {
         self.hours * 60 + self.minutes
     }
+
+    fn to_format(&self, mode: &str) -> String {
+        match mode {
+            "COUNTDOWN" => format!("+{}", self.to_minutes()),
+            "CLOCK" => format!("{}:{}", self.hours, self.minutes),
+            &_ => String::from(""),
+        }
+    }
 }
 
 fn execute_command(command: &str, args: Vec<&str>) -> bool {
@@ -29,14 +37,13 @@ fn cancel() -> bool {
 }
 
 #[tauri::command]
-fn shutdown(time: Time) -> bool {
-    println!("Shutting down in {} hours and {} minutes or {} minutes", time.hours, time.minutes, time.hours * 60 + time.minutes);
-    execute_command("shutdown", vec![format!("+{}", time.to_minutes()).as_str()])
+fn shutdown(time: Time, mode: &str) -> bool {
+    execute_command("shutdown", vec![time.to_format(mode).as_str()])
 }
 
 #[tauri::command]
-fn reboot(time: Time) -> bool {
-    execute_command("shutdown", vec![format!("+{}", time.to_minutes()).as_str(), "-r"])
+fn reboot(time: Time, mode: &str) -> bool {
+    execute_command("shutdown", vec![time.to_format(mode).as_str(), "-r"])
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

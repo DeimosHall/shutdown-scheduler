@@ -35,14 +35,14 @@ export const MainContainer = () => {
       try {
         switch (action) {
           case "SHUTDOWN": {
-            const success = await invoke("shutdown", { time: time });
+            const success = await invoke("shutdown", { time: time, mode: mode });
             if (!success) {
               alert("Something went wrong while scheduling the shutdown");
             }
             break;
           }
           case "RESTART": {
-            const success = await invoke("reboot", { time: time });
+            const success = await invoke("reboot", { time: time, mode: mode });
             if (!success) {
               alert("Something went wrong while scheduling the restart");
             }
