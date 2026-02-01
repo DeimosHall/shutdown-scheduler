@@ -3,7 +3,7 @@ import { CustomButton } from "../common/CustomButton";
 
 interface ActionButtonsProps {
   started: Boolean;
-  onStartedChange: (newStarted: Boolean) => void;
+  onStartedChange: (newStarted: boolean) => void;
 }
 
 export const ActionButtons = ({
