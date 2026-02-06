@@ -65,7 +65,7 @@ export const ActionSelector = ({
               <span>Restart</span>
             </ActionButton>
           </Grid>
-          <Grid size="auto">
+          {/*<Grid size="auto">
             <ActionButton
               isSelected={action === "SLEEP"}
               onClick={() => onActionChange("SLEEP")}
@@ -73,7 +73,7 @@ export const ActionSelector = ({
               <NightsStay sx={{ fontSize: 40 }} />
               <span>Sleep</span>
             </ActionButton>
-          </Grid>
+          </Grid>*/}
         </Grid>
       </Box>
     </>
