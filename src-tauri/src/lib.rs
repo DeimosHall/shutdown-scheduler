@@ -48,6 +48,16 @@ fn reboot(time: Time, mode: &str) -> bool {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    #[cfg(feature = "nvidia")]
+    {
+        std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+        eprintln!("NVIDIA feature enabled: WEBKIT_DISABLE_DMABUF_RENDERER set to 1");
+    }
+    #[cfg(not(feature = "nvidia"))]
+    {
+        eprintln!("No NVIDIA feature set");
+    }
+
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![cancel, shutdown, reboot])
