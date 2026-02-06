@@ -24,6 +24,8 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "shortDescription": "A utility to schedule system shutdowns and reboots",
+    "longDescription": "Shutdown Scheduler is a GUI application that lets users control when they want their PCs to shutdown or reboot",
     "licenseFile": "../LICENSE",
     "license": "GPLv3",
     "icon": [
