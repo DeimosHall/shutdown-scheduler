@@ -1,7 +1,7 @@
 import { Box, Button, ButtonProps, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Action } from "../../types/types";
-import { NightsStay, PowerSettingsNew, RestartAlt } from "@mui/icons-material";
+import { PowerSettingsNew, RestartAlt } from "@mui/icons-material";
 
 interface ActionSelectorProps {
   action: Action;
