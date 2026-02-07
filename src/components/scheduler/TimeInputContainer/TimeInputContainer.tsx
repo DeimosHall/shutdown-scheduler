@@ -1,0 +1,87 @@
+import { useEffect, useState } from "react";
+import { Mode, Time } from "../../../types/types";
+import { ClockInput } from "./ClockInput";
+import { CountdownInput } from "./CountdownInput";
+
+interface TimeInputContainerProps {
+  onTimeChange: (newTime: Time) => void;
+  mode: Mode;
+  disabled: Boolean;
+}
+
+interface TimeValue {
+  clockTime: Time;
+  countdownTime: Time;
+}
+
+export function TimeInputContainer({
+  onTimeChange,
+  mode,
+  disabled,
+}: TimeInputContainerProps) {
+  const [timeValue, setTimeValue] = useState<TimeValue>({
+    clockTime: {
+      hours: 0,
+      minutes: 0,
+    },
+    countdownTime: {
+      hours: 0,
+      minutes: 30,
+    },
+  });
+
+  useEffect(() => {
+    switch (mode) {
+      case "COUNTDOWN": {
+        onTimeChange(timeValue.countdownTime);
+        break;
+      }
+      case "CLOCK": {
+        onTimeChange(timeValue.clockTime);
+        break;
+      }
+    }
+  }, [mode]);
+
+  const updateTimeValue = (newTime: Time) => {
+    switch (mode) {
+      case "COUNTDOWN": {
+        setTimeValue((prev) => ({
+          ...prev,
+          countdownTime: newTime,
+        }));
+        onTimeChange(newTime);
+        break;
+      }
+      case "CLOCK": {
+        setTimeValue((prev) => ({
+          ...prev,
+          clockTime: newTime,
+        }));
+        onTimeChange(newTime);
+        break;
+      }
+      default: {
+        alert("This should never happen!");
+      }
+    }
+  };
+
+  return (
+    <>
+      {mode === "COUNTDOWN" ? (
+        <CountdownInput
+          time={timeValue.countdownTime}
+          onTimeChange={updateTimeValue}
+          disabled={disabled}
+        />
+      ) : (
+        <ClockInput
+          time={timeValue.clockTime}
+          onTimeChange={updateTimeValue}
+          disabled={disabled}
+        />
+      )}
+    </>
+  );
+}

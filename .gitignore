@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vscode/
+
+# Generated icons
+src-tauri/icons/
